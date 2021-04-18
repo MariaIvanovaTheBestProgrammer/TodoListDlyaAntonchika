@@ -4,8 +4,24 @@ using System.Text;
 
 namespace ToDoListDlyaAntonchika
 {
-    public class WorkTodoList : TodoListBasicElement
+    class WorkListElement : BasicListElement
     {
+        private string meetingType;
+        public override string GetMainActivity
+        {
+            get { return meetingType; }
+            set
+            {
+                if (value.Length == 0)
+                {
+                    throw new ArgumentException("Please enter the meeting type");
+                }
+                else
+                {
+                    meetingType = value;
+                }
+            }
+        }
         private DateTime meetingDate;
         public DateTime MeetingDate
         {
@@ -22,8 +38,8 @@ namespace ToDoListDlyaAntonchika
                 }
             }
         }
-        private String meetingPlace;
-        public String MeetingPlace
+        private string meetingPlace;
+        public string MeetingPlace
         {
             get { return meetingPlace; }
             set
@@ -39,16 +55,17 @@ namespace ToDoListDlyaAntonchika
             }
         }
 
-        public WorkTodoList(int id, string name, string description, DateTime creationDate, DateTime deadline, DateTime meetingDate, string meetingPlace) 
-            : base( id,  name,  description,  creationDate,  deadline)
+        public WorkListElement(int id, string name, string description, DateTime creationDate, DateTime deadline, DateTime meetingDate, string meetingPlace, string meetingType)
+            : base(id, name, description, creationDate, deadline)
         {
             this.MeetingDate = meetingDate;
             this.MeetingPlace = meetingPlace;
+            this.GetMainActivity = meetingType;
         }
 
         public override string ToString()
         {
-            return base.ToString() + " Meeting date: "+meetingDate+" Meeting place: "+meetingPlace;
+            return base.ToString() + " Meeting date: " + meetingDate + " Meeting place: " + meetingPlace + " Meeting type: " + meetingType;
         }
     }
 }

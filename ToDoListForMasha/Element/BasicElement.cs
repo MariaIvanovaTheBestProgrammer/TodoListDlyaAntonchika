@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ToDoListDlyaAntonchika
+namespace ToDoListForMasha.Element
 {
-    public abstract class TodoListBasicElement
+    public abstract class BasicElement
     {
         private int id;
-        public int ID{
+        public int Id
+        {
             get { return id; }
             set
             {
-                if (id<0)
+                if (id < 0)
                 {
                     throw new ArgumentException("ID must be more than 0");
                 }
@@ -37,14 +38,15 @@ namespace ToDoListDlyaAntonchika
                 }
             }
         }
-        private String description { get; set; }
+        public String description { get; private set; }
+
         private DateTime creationDate;
         public DateTime CreationDate
         {
             get { return creationDate; }
             set
             {
-                if (value <DateTime.Now)
+                if (value < DateTime.Now)
                 {
                     throw new ArgumentException("You can't create plans on this date");
                 }
@@ -71,22 +73,24 @@ namespace ToDoListDlyaAntonchika
             }
         }
 
-        public TodoListBasicElement(int id, string name, string description, DateTime creationDate, DateTime deadline)
+        public BasicElement(int id, string name, string description, DateTime creationDate, DateTime deadline)
         {
-            this.ID = id;
+            this.Id = id;
             this.Name = name;
             this.description = description;
             this.CreationDate = creationDate;
             this.Deadline = deadline;
         }
-        public void changeDeadline (DateTime newDeadline)
+        public void changeDeadline(DateTime newDeadline)
         {
             this.deadline = newDeadline;
         }
 
         public override string ToString()
         {
-            return id +". " +name+", "+description+", Creation date: "+creationDate.ToLongDateString() + ", Deadline: "+deadline.ToLongDateString();
+            return id + ". " + name + ", " + description + ", Creation date: " + creationDate.ToLongDateString() + ", Deadline: " + deadline.ToLongDateString();
         }
     }
+
+}
 }

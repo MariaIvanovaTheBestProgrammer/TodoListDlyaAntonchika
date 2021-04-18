@@ -4,10 +4,10 @@ using System.Text;
 
 namespace ToDoListDlyaAntonchika
 {
-    class SelfDevelopmentTodoList : TodoListBasicElement
+    class SelfDevelopmentListElement : BasicListElement
     {
-        private String bookToRead;
-        public String BookToRead
+        private string bookToRead;
+        public override string GetMainActivity
         {
             get { return bookToRead; }
             set
@@ -24,16 +24,17 @@ namespace ToDoListDlyaAntonchika
 
         }
 
-        public SelfDevelopmentTodoList(int id, string name, string description, DateTime creationDate, DateTime deadline, string bookToRead) 
-            : base (id, name, description, creationDate, deadline)
+        public SelfDevelopmentListElement(int id, string name, string description, DateTime creationDate, DateTime deadline, string bookToRead)
+            : base(id, name, description, creationDate, deadline)
         {
-            this.BookToRead = bookToRead;
+            this.GetMainActivity = bookToRead;
 
         }
 
         public override string ToString()
         {
-            return base.ToString()+" Book name: "+ bookToRead;
+            return base.ToString() + " Book name: " + bookToRead;
         }
+
     }
 }
